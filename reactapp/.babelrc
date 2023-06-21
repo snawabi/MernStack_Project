@@ -1,0 +1,6 @@
+{
+  "presets": [
+      "@babel/preset-env",  //convert ES6 to core js
+      "@babel/preset-react" //convert react into ES6
+  ]
+}

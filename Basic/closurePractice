@@ -1,0 +1,27 @@
+function Student(Fname,Lname,id,University){
+  var Fname = Fname;
+  var Lname = Lname;
+  var id = id;
+  var University = University;
+
+  function Child(isAdmin){
+    if(isAdmin){
+      return {
+        Fname,
+        Lname,
+        id,
+        University
+      }
+    } else {
+      return {
+        Fname,
+        Lname
+      }
+    }
+  }
+  return Child;
+}
+
+var studentObj = Student("James", "Ronaldo", 1223, "Branch University");
+console.log(studentObj(true));
+console.log(studentObj(false));

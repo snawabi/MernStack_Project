@@ -1,0 +1,15 @@
+var Account = {fullName : "Alex Gomez", 
+               bankName : "Bank of America", 
+               accountNumber : 1234567, 
+               accountActive : "Yes"}
+
+function getBankAccount (customerId){
+  console.log( `First & Last Name: ${this.fullName}
+                Bank Name: ${this.bankName}
+                Account Number: ${this.accountNumber}
+                Account Active: ${this.accountActive}`)
+  console.log(`Customer Id: ${customerId}`)
+}    
+
+getBankAccount.call(Account, 4)
+getBankAccount.apply(Account, [5])

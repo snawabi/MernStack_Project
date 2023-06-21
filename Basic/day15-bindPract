@@ -1,0 +1,13 @@
+var Student = {
+  fullName: "James Gomez",
+  state: "CA",
+  country: "USA",
+
+  getStudentInfo : function(){
+    console.log(`fullName: ${this.fullName}`)
+    setTimeout(function(anotherName)){
+      console.log(`new name inside timeout: ${anotherName}`)
+    }
+  }
+ 
+}
