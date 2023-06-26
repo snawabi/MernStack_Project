@@ -817,6 +817,10 @@ tr:nth-child(even) {
 .twelve > * {
   width: 8.33333%; }
 
+.width {
+  width: 40rem;
+}
+
 @media all and (min-width: 500px) {
 
   .othersections{

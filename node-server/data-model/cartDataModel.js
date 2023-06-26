@@ -6,7 +6,8 @@ mongooseObj.connect("mongodb://127.0.0.1/mernstack15"); //creates db with name m
 let CartSchema = new schemaObj({
   //the data will not be saved until userid is passed
     userid: { type:String, required:true}, 
-    cart: Object  // any kind of data can be passed here
+    cart: Object,  // any kind of data can be passed here
+    clearCart: {type: Boolean, default: false}
 },
 {
     versionKey: false //false - set to false then it wont create in mongodb

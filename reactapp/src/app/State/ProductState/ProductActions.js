@@ -56,7 +56,7 @@ export const fetchProducts = ()=>{
             
         })
         .catch((err)=>{
-            console.log("Error While Saving Product", err)
+            console.log("Error While fetching Product", err)
         })
     }
 };

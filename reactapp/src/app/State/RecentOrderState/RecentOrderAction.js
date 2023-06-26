@@ -18,7 +18,7 @@ export const removePaidItem = (id) => ({
   payload: {id}
 })
 
-export const emptyPaidItem = () => ({
+export const emptyCart = () => ({
   type: ActionTypes.EMPTY_PAID_ITEM,
 })
 
@@ -64,7 +64,7 @@ export const getRecentOrder = (userid) => {
       .then (usercartresponse => {
           console.log("***in file RecentOrderAction.js response getRecentOrder*****", usercartresponse);
           
-          //dispatch(emptyTheCart()); //remove the duplicacy first empty the cart 
+          dispatch(emptyCart()); //remove the duplicacy first empty the cart 
           
           //add cart item one by one into CartReducer.js
           for (const item of usercartresponse.order) {

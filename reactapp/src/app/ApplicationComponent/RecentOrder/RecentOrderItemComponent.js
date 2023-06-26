@@ -16,7 +16,7 @@ let RecentOrderItemComponent = ({orders})=>{
   let dateOrdered = useSelector((state)=> state.recentOrderReducer.date)
 
   //getting dates and formating date
-  let orderDate = dayjs(dateOrdered).add(1,'day').format('MMMM D, YYYY')
+  let orderDate = dayjs(dateOrdered).format('MMMM D, YYYY')
   let deliveredDate = dayjs(orderDate).add(2,'day')
   let formatDeliveredDate = dayjs(deliveredDate).format('MMMM D, YYYY')
   let currentDate = new Date();

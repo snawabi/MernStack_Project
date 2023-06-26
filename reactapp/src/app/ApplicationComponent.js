@@ -29,6 +29,7 @@ import RecentOrderComponent from "./ApplicationComponent/RecentOrder/RecentOrder
 import CancelOrderComponent from "./ApplicationComponent/CancelOrder/CancelOrderComponent";
 import ReviewComponent from "./ApplicationComponent/Review/ReviewComponent";
 import DisplayCustomerReview from "./ApplicationComponent/Review/DisplayCustomerReview";
+import NotificationComponent from "./ApplicationComponent/Notification/NotificationComponent";
 
 export default class Application extends Component {
   constructor(props) {
@@ -66,6 +67,7 @@ export default class Application extends Component {
           <Route path="/cancelorder" element={<CancelOrderComponent/>} />
           <Route path="/review" element={<ReviewComponent/>} />
           <Route path="/customerreview" element={<DisplayCustomerReview/>} />
+          <Route path="/notification" element={<NotificationComponent/>} />
           <Route path="/about" element={<About />} />
           <Route path="/about/:id" element={<About />} />
           <Route path="/thankyou" element={<ThankYouComponent />} />

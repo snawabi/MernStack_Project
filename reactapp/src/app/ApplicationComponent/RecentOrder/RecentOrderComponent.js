@@ -59,32 +59,30 @@ let RecentOrderComponent = ()=> {
             <button className="mt-5 mb-3" onClick={()=>{savePaidItem(recentOrder, userInfo._id)}}>Save Order</button>
         </Fragment>
             
-          : 
-          <Fragment>
-            <table>
-              <thead>
-                  <tr>
-                      <th>Name</th>
-                      <th>Price</th>
-                      <th>Description</th>
-                      <th>Rating</th>
-                      <th>Quantity</th>
-                      <th>Total</th>
-                      <th>Date Ordered</th>
-                      <th>Delivery</th>
-                      <th>Cancel Order</th>
-                  </tr>
-               </thead>
-              <tbody>
+      : 
+        <Fragment>
+          <table>
+            <thead>
                 <tr>
-                  <td>Emptied</td>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Rating</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Date Ordered</th>
+                    <th>Delivery</th>
+                    <th>Cancel Order</th>
                 </tr>
-              </tbody>
-             </table> 
-             {/* <button className="m-3" onClick={()=>{savePaidItem(recentOrder, userInfo._id)}}>Save Order</button> */}
-          </Fragment>
-          
-          
+              </thead>
+            <tbody>
+              <tr>
+                <td>Cart is Empty</td>
+              </tr>
+            </tbody>
+            </table> 
+            <button className="mt-5 mb-3" onClick={()=>{savePaidItem(recentOrder, userInfo._id)}}>Save Order</button>
+        </Fragment>                  
       }               
         
     </>

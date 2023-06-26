@@ -5,19 +5,26 @@ import CartItemComponent from "./CartItemComponent";
 import CartSummaryComponent from "./CartSummaryComponent";
 import { saveCartToDb } from "../../State/CartState/CartActions";
 import {saveRecentOrderToDb} from "../../State/RecentOrderState/RecentOrderAction"
+import { deleteCartDb } from "../../State/CartState/CartActions";
+
+import { emptyTheCart } from "../../State/CartState/CartActions";
+
 
 let CartComponent = (props)=> {
     //cartList = [{name:" ", price: " ", desc: " ", rating: " "}, {...}]
     let cartList = useSelector((state)=>state.cartReducer)
+    var clearCart = true;
 
     //check if user is login or not by using the user._id
     let user = useSelector((state)=>state.userReducer.User)
+    let dispatchToCart = useDispatch();
 
     let navigate = useNavigate();
-    let func = function(event) {      
-        navigate('/checkout');
-        event.preventDefault();
-    }
+    // let func = function(event) {    
+    //    // dispatchToCart(emptyTheCart())  
+    //     navigate('/checkout');
+    //     event.preventDefault();
+    // }
 
     let recalculate = (cartItems)=>{
         let amount = 0, 
@@ -34,11 +41,22 @@ let CartComponent = (props)=> {
         }
     }
 
+    let clearCartDb = (cartList, userid, clearCart)=>{
+        if(!userid){
+            alert("Please sign in  before saving the cart!!")
+            navigate('/user');
+        }else
+          dispatchCartToDB(deleteCartDb(cartList, userid, clearCart));
+          navigate('/checkout');
+    }
+
+    let func = function(event) {      
+        navigate('/checkout');
+        event.preventDefault();
+    }
+
     let dispatchCartToDB = useDispatch();
     // let dispatchRecentOrderToDb = useDispatch();
-
-    var orderDate = new Date()
-    let date = (orderDate.getMonth()+1) +"/"+ orderDate.getDate() +"/"+ orderDate.getFullYear();
 
     let clickToSaveCart = (cartList, userid)=>{
         if(!userid){
@@ -95,6 +113,9 @@ let CartComponent = (props)=> {
                             <Fragment>
                                 <button onClick={() => clickToSaveCart(cartList, user._id)} >
                                         Save Cart
+                                </button>
+                                <button onClick={()=>clearCartDb(cartList, user._id, clearCart)} >
+                                    Clear Cart
                                 </button>
                                 
                                 <button onClick={func} >

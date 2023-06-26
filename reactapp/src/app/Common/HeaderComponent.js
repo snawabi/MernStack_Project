@@ -1,8 +1,11 @@
 import React, { Fragment } from "react";
-import { NavLink, useNavigate } from "react-router-dom"; //hoooks for navigations
+import { Link, NavLink, useNavigate } from "react-router-dom"; //hoooks for navigations
 import { connect, useSelector } from "react-redux";
 import User2 from "./../ApplicationComponent/User/User2Container";
+import NotificationComponent from "../ApplicationComponent/Notification/NotificationComponent";
 //connect: connect the react with store
+
+import Dropdown from 'react-bootstrap/Dropdown';
 
 let Header = (props) => {
   //using connect and mapStateToProps
@@ -36,6 +39,7 @@ let Header = (props) => {
             <NavLink to="/about" className="button" activeclassname="success">
               About
             </NavLink>
+            
           </div>     
         </Fragment>
        : 
@@ -73,9 +77,14 @@ let Header = (props) => {
           {/* <NavLink to="/customerreview" className="button" activeclassname="success">
             Display Reviews
           </NavLink> */}
+          <NotificationComponent/>
           <NavLink to="/hobby" className="button" activeclassname="success">
             Hobby
           </NavLink>
+          {/* <NavLink to="/notification" className="button" activeclassname="success">
+              Notification
+          </NavLink> */}
+           
           <NavLink to="/about" className="button" activeclassname="success">
             About
           </NavLink>

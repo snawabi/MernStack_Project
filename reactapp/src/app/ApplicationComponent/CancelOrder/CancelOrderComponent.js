@@ -11,19 +11,19 @@ let CancelOrderComponent = () => {
   let cancelOrderReceived = useSelector((state)=> state.cancelOrderReducer);
   let userInfo = useSelector((state)=> state.userReducer.User);
 
-  let showDiscount = (cancelOrder) => {
-    let orderName = "",
-    discountAmount = "10%"
+  // let showDiscount = (cancelOrder) => {
+  //   let orderName = "",
+  //   discountAmount = "10%"
 
-    for (let order of cancelOrder){
-      orderName += order.name;
-    }
+  //   for (let order of cancelOrder){
+  //     orderName += order.name;
+  //   }
 
-    return {
-      orderName,
-      discountAmount
-    }
-  }
+  //   return {
+  //     orderName,
+  //     discountAmount
+  //   }
+  // }
 
   let dispatchCancelOrderToDb = useDispatch();
 
@@ -65,13 +65,19 @@ let CancelOrderComponent = () => {
             </tbody>
           </table>
           
-          <CancelOrderDiscount data={showDiscount(cancelOrderReceived)}/>
+          {/* <CancelOrderDiscount data={showDiscount(cancelOrderReceived)}/> */}
+          <CancelOrderDiscount/>
 
           <button className="mt-5" onClick={()=>{saveCancelOrder(cancelOrderReceived, userInfo._id)}}>Save</button>
           
         </div>
       :
-        <h3>No order has been canceled</h3>
+      <Fragment>
+         <h3>Cart is Empty</h3>
+         <button className="mt-5" onClick={()=>{saveCancelOrder(cancelOrderReceived, userInfo._id)}}>Save</button>
+      </Fragment>
+       
+        
       }
         
 

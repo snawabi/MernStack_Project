@@ -2,14 +2,14 @@ let express = require("express");
 let router = express.Router({}),
 CartDataModel = require("../data-model/cartDataModel");
 
-//cart api's
+// save cart api
 router.post("/api/saveUserCart",(req, res)=>{
 
     CartDataModel.findOne({userid: req.body.userid})
         .then((cartDbObj) => {    
                 //if there is no cart, make a call to save the cart    
                 if (!cartDbObj) { //checks for null cart of given user
-                        console.log("No cartitems Present, Adding / Inserting!"); 
+                        console.log("No cartitems Present, Adding / Inserting!" ); 
                         let cartObj = new CartDataModel(req.body);
 
                         cartObj.save().then((data)=>{                                  
@@ -19,27 +19,56 @@ router.post("/api/saveUserCart",(req, res)=>{
                         });
                 }
                 else{ //update the cart for given user
-                    console.log("CartItems Present, Replacing / Updating!");
-                    cartDbObj.cart = req.body.cart;//replacing db cart with cart that user has sent from cartcomponent page
+                    console.log("CartItems Present, Replacing / Updating!", cartDbObj);
+                        
+                        cartDbObj.cart = req.body.cart;//replacing db cart with cart that user has sent from cartcomponent page
+                        cartDbObj.clearCart = false;
                     
-                    cartDbObj.save()
-                    .then((data)=>{        
-                         setTimeout(()=>{
-                            res.json(data);
-                        },3000)                        
-                    })
-                    .catch((err)=>{
-                        res.send("Error Occurred"+ err);
-                    })
+                        cartDbObj.save()
+                        .then((data)=>{        
+                            setTimeout(()=>{
+                                res.json(data);
+                                console.log("*** getting data: if cartClear=false",data)
+                            },3000)                        
+                        })
+                        .catch((err)=>{
+                            res.send("Error Occurred"+ err);
+                        })
                 }
-  })
-  .catch((err)=>{
-        console.log("got an error!", err);            
-        res.send("error while fetching cart!");
-  });
+        })
+        .catch((err)=>{
+                console.log("got an error!", err);            
+                res.send("error while fetching cart!");
+    });
 
 });
 
+// delete cart api
+router.post("/api/deleteUserCart",(req, res)=>{
+
+    CartDataModel.findOne({userid: req.body.userid})
+        .then((cartDbObj) => {    
+            cartDbObj.clearCart = true;
+            cartDbObj.cart=[];
+            cartDbObj.save()
+            .then((data)=>{        
+                setTimeout(()=>{
+                    res.json(data);
+                    console.log("*** cart is clear",data)
+                },3000)                        
+            })
+            .catch((err)=>{
+                res.send("Error Occurred"+ err);
+            })
+        })
+        .catch((err)=>{
+                console.log("got an error!", err);            
+                res.send("error while fetching cart!");
+    });
+
+});
+
+//fetch the cart api
 router.post("/api/getUserCart",(req, res)=>{
     CartDataModel.findOne({userid: req.body.userid})
         .then((cart) => { 

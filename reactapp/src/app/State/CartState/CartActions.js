@@ -22,6 +22,7 @@ export const updateItem = (id, qty) => ({
     }
 });
 
+
 //save cart coming from product(cart) DB and userid coming from userReducer DB saved in cart DB.
 export const saveCartToDb = (cart, userid)=>{
 
@@ -37,7 +38,7 @@ export const saveCartToDb = (cart, userid)=>{
             body: JSON.stringify({userid:userid, cart:cart})})
         .then (response => response.json())  // to convert to json object
         .then (usercartresponse => {
-            console.log("response ", usercartresponse); //{_id: " ", userid: "", cart:[{_id:"", name:"", price:"", desc:"", rating:""},{..}] }
+            console.log("\\\\\\\\\\\\\\response /////////////", usercartresponse.clearCart); //{_id: " ", userid: "", cart:[{_id:"", name:"", price:"", desc:"", rating:""},{..}] }
             //dispatch(loading(false));
         })
         .catch((err)=>{
@@ -46,6 +47,33 @@ export const saveCartToDb = (cart, userid)=>{
         }) 
     }
 }
+
+//delete cart from db
+export const deleteCartDb = (cart, userid, clearCart)=>{
+
+    console.log("Items To Be Saved", clearCart); 
+    return function(dispatch) {
+        //dispatch(loading(true));
+        window.fetch("http://localhost:9000/cart/api/deleteUserCart",{
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({userid:userid, cart:cart, clearCart:clearCart})})
+        .then (response => response.json())  // to convert to json object
+        .then (usercartresponse => {
+            console.log("\\\\\\\\\\\\\\delete response /////////////", usercartresponse.clearCart); //{_id: " ", userid: "", cart:[{_id:"", name:"", price:"", desc:"", rating:""},{..}] }
+            //dispatch(loading(false));
+        })
+        .catch((err)=>{
+            //dispatch(loading(false));
+            console.log("Error While Saving Cart", err);
+        }) 
+    }
+}
+
+
 
 //fetching the user cart when sign in. userid is comming from database from userReducer.js
 export const getUserCart = (userid) => {
