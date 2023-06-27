@@ -9,8 +9,9 @@ let RecentOrderComponent = ()=> {
   let userInfo = useSelector((state)=> state.userReducer.User)
 
   let dispatchRecentOrderToDb = useDispatch();
+  let fetchRecentOrder = useDispatch();
 
-  useEffect(()=>{ dispatchRecentOrderToDb(getRecentOrder(userInfo._id)) },[]) 
+  useEffect(()=>{ fetchRecentOrder(getRecentOrder(userInfo._id)) },[]) 
 
   // var orderDate = new Date()
   // let date = (orderDate.getMonth()+1) +"/"+ orderDate.getDate() +"/"+ orderDate.getFullYear();
