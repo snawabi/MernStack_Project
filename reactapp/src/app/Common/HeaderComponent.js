@@ -3,6 +3,10 @@ import { Link, NavLink, useNavigate } from "react-router-dom"; //hoooks for navi
 import { connect, useSelector } from "react-redux";
 import User2 from "./../ApplicationComponent/User/User2Container";
 import NotificationComponent from "../ApplicationComponent/Notification/NotificationComponent";
+
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 //connect: connect the react with store
 
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -25,6 +29,7 @@ let Header = (props) => {
 
   return (
     <>
+
       Hi <b>{userName + ", "}</b> Welcome to SynergisticIT Shopping Cart
       {userName == "" ?
         <Fragment>
@@ -43,6 +48,7 @@ let Header = (props) => {
           </div>     
         </Fragment>
        : 
+      
         <div className="mt-5">
           <NavLink to="/home" className="button" activeclassname="success">
             Home
@@ -77,7 +83,6 @@ let Header = (props) => {
           {/* <NavLink to="/customerreview" className="button" activeclassname="success">
             Display Reviews
           </NavLink> */}
-          <NotificationComponent/>
           <NavLink to="/hobby" className="button" activeclassname="success">
             Hobby
           </NavLink>
@@ -88,6 +93,8 @@ let Header = (props) => {
           <NavLink to="/about" className="button" activeclassname="success">
             About
           </NavLink>
+
+          <NotificationComponent/>
         </div>
       }
 

@@ -111,7 +111,7 @@ let NotificationComponent = () => {
   return (
     <>
     
-    <Dropdown className="d-inline" drop='down-centered'>
+    <Dropdown className="d-flex justify-content-end" drop='down-centered'>
         <Dropdown.Toggle variant="primary" id="dropdown-basic" >
         <AiFillBell size={20}/> <Badge bg="danger">{countNumberOfNotification}</Badge>
         </Dropdown.Toggle>

@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { saveRecentOrderToDb } from "../../State/RecentOrderState/RecentOrderAction";
+import { saveRecentOrderToDb, getRecentOrder } from "../../State/RecentOrderState/RecentOrderAction";
 import RecentOrderItemComponent from "./RecentOrderItemComponent";
 
 let RecentOrderComponent = ()=> {
@@ -9,6 +9,8 @@ let RecentOrderComponent = ()=> {
   let userInfo = useSelector((state)=> state.userReducer.User)
 
   let dispatchRecentOrderToDb = useDispatch();
+
+  useEffect(()=>{ dispatchRecentOrderToDb(getRecentOrder(userInfo._id)) },[]) 
 
   // var orderDate = new Date()
   // let date = (orderDate.getMonth()+1) +"/"+ orderDate.getDate() +"/"+ orderDate.getFullYear();
